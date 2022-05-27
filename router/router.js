@@ -4,7 +4,8 @@ const Backend = require("../db/model/backendSchema");
 
 
 try{
-    //inseting a new book into the database
+
+//inseting a new book into the database
 router.post("/books", async(req, res)=>{
     const newData = req.query;
     if(!newData.name || !newData.author || !newData.rating || !newData.ratersNumber || !newData.raters){
@@ -70,7 +71,6 @@ router.get("/book/:title", async(req, res)=>{
     }
 })
 
-
 //API-2
 //check if user has rated a book or not
 router.get("/ratingStatus/:username/:book", async(req, res)=>{
@@ -128,6 +128,10 @@ router.post("/rating/:username/:book/:rate", async(req, res)=>{
         }).catch(err=>console.log(err));
         res.status(201).json({"status" : true});
     }
+})
+
+router.get("/", (req, res)=>{
+    res.send("<h1>API running properly</h1>")
 })
 
 }
